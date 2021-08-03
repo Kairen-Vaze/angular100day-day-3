@@ -1,0 +1,39 @@
+<hello name="{{ name }}"></hello>
+<p>
+  Start editing to see some magic happen :)
+</p>
+
+<!-- * Cách gọi model sẽ thông qua expression -->
+<!-- * Nếu thắc mắc vì sao trong template (metadata) có thể gọi được model ở data: Vì chúng được gán với nhau thông qua ts Decorator -> CHÚNG CÓ LIÊN QUAN VỚI NHAU (Không 1 chiều, 2 chiều gì hết, chỉ là CÓ LIÊN QUAN) -->
+<!-- * Hiểu sơ thì expression sẽ gọi hàm toString, gõ mỗi user ra là biết -->
+<p>{{user.name}}</p>
+
+<!-- * Cách 2 -->
+<!-- * vd như thẻ input này sẽ được parsed thành 
+  HTMLInputElemet {
+    type: 'text',
+    value: 'kairen',
+    attributes: [],
+    ...(ngoài ra còn có những attributes khác)
+  } -->
+<!-- * Data binding có thể chia ra làm 2: property binding & attribute binding -->
+<!-- * property binding: bỏ dâu ngoặc vuông ngoài attribute của thẻ HTML & giá trị nhận vào là:
+  - #1: String text litteral: tên chuỗi + phải được khai báo như một expression (thêm nháy đơn vô cho nó biết)
+  - #2: gắn tên model vô (lần này ko cần nháy đơn). Cái inputType sẽ được evaluate thành chuỗi string 'text' bên app.component.ts và sau đó sẽ bind vào chỗ [type] trong thẻ input.
+-->
+<!-- * Đối với những model nó static thì không cần phải bỏ dấu ngoặc vuông & nháy đơn vào -->
+<input type="text" value="static model"><br><br>
+<!-- * property binding #1 -->
+<input [type]="'text'" value="property binding #1"> <br><br>
+<!-- * property binding #2 -->
+<input [type]="inputType" value="property binding #2"><br><br>
+
+<!-- * Event binding sẽ sử dụng ngoặc tròn -->
+<button (click)="handler()">click me</button><br><br>
+
+<!-- * 2 ways data binding -->
+<input type="text" [(ngModel)]="input">
+<!-- * Cú pháp trên là viết ngắn của cú pháp -->
+<input type="text" [ngModel]="input" (ngModelChange)="input = $event">
+
+<p>your input: {{input}}</p>
