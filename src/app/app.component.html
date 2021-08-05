@@ -37,3 +37,21 @@
 <input type="text" [ngModel]="input" (ngModelChange)="input = $event">
 
 <p>your input: {{input}}</p>
+
+<div *ngIf="user.ages == 22; else sorry">
+  Congrats! u r 22 :))
+</div>
+
+<ng-template #sorry>
+  <div *ngIf="user.ages <= 22; else sorry2">
+    sr, u r not old enough :((
+  </div>
+  <ng-template #sorry2>
+    sr, u r too old :(((
+  </ng-template>
+</ng-template>
+
+
+<button (click) = "user.ages = user.ages - 1">-</button>
+<p>my age {{user.ages}}</p>
+<button (click) = "user.ages = user.ages + 1">+</button>
